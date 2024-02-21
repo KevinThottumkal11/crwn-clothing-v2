@@ -34,6 +34,7 @@ export const auth = getAuth();
 
 export const signInWithGooglePopup = () => signInWithPopup(auth, provider);
 
+// For Firestore database
 export const db = getFirestore();
 
 export const createUserDocumentFromAuth = async (userAuth) => {
@@ -44,6 +45,7 @@ export const createUserDocumentFromAuth = async (userAuth) => {
   console.log(userSnapShot);
   console.log(userSnapShot.exists());
 
+  // Creating user info if it doesn't exist
   if (!userSnapShot.exists()) {
     const { displayName, email } = userAuth;
     const createdAt = new Date();
