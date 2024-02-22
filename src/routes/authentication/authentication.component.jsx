@@ -21,7 +21,7 @@ const Authentication = () => {
         }
     }, [])
 
-    // Will not console.log because we are redirected to a different domain. 
+    // Will not console.log for SignInWithRedirect because we are redirected to a different domain. 
     // So it will not process the code after the redirect
 
     // const logGoogleRedirectUser = async () => {
