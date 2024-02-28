@@ -65,6 +65,7 @@ export const getCategoriesAndDocuments = async () => {
 
   const q = query(collectionRef);
 
+    // Loading data in a Hashmap instead of an array
   const querySnapshot = await getDocs(q);
   const categoryMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
     const { title, items } = docSnapshot.data();
