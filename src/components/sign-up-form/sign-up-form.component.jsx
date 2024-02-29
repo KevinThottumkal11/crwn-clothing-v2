@@ -22,7 +22,7 @@ const SignUpForm = () => {
 
     // const { setCurrentUser } = useContext(UserContext);
 
-    console.log(formFields);
+    // console.log(formFields);
 
     const resetForm = () => {
         setFormFields(defaultFormFields);
