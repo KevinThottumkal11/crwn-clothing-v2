@@ -1,16 +1,40 @@
+import { useEffect } from 'react';
+
+import { useDispatch } from 'react-redux';
+
 import { Routes, Route } from "react-router-dom";
 
+import { 
+    onAuthStateChangedListener, 
+    signOutUser, 
+    createUserDocumentFromAuth 
+} from './utils/firebase/firebase.utils';
 import Home from "./routes/home/home.component";
 import Navigation from "./routes/navigation/navigation.component";
 import Authentication from "./routes/authentication/authentication.component";
 import Shop from "./routes/shop/shop.component";
 import Checkout from "./routes/checkout/checkout.component";
+import { setCurrentUser } from './store/user/user.action';
 
 // import Directory from './components/directory/directory.component';
 
 // import './categories.styles.scss'
 
 const App = () => {
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChangedListener((user) => {
+        if (user) {
+            createUserDocumentFromAuth(user);
+        }
+        // console.log(user);
+        dispatch(setCurrentUser(user));
+    });
+
+    return unsubscribe; // cleanup function, runs when component unmounts
+}, [])
   return (
     <Routes>
       <Route path="/" element={<Navigation />}>
